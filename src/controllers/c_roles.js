@@ -83,6 +83,7 @@ const updateRole = async (req, res) => {
   };
 
   try {
+    // data yang mau diupdate
     const findData = await ModelRoles.findById({ _id });
     if (!findData) return Messages(res, 404, "Data not found");
 
@@ -90,6 +91,15 @@ const updateRole = async (req, res) => {
       if (!status) return Messages(res, 412, { ...err, status });
 
       const inputName = name.toLowerCase().trim();
+      const filter = { name: { $regex: inputName, $options: "i" } };
+      // pengecekan data dari input
+      const isSameName = await ModelRoles.findOne(filter);
+
+      const currentName = findData._doc.name !== inputName;
+
+      if (isSameName && currentName)
+        return Messages(res, 400, `${inputName} has been register on system`);
+
       const payload = { name: inputName };
       const updateData = await ModelRoles.findByIdAndUpdate(_id, payload, {
         new: true,
