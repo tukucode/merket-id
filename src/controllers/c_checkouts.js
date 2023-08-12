@@ -119,17 +119,17 @@ const historyCheckout = async (req, res) => {
       .limit(per_page);
 
     const currentTotal = data.map((item) => item.total);
-    let incomes = undefined;
+    let total_expense = undefined;
 
     if (currentTotal.length) {
-      incomes = currentTotal.reduce((a, b) => a + b);
+      total_expense = currentTotal.reduce((a, b) => a + b);
     }
 
     Messages(
       res,
       200,
       "All data",
-      { incomes, data },
+      { total_expense, data },
       {
         page,
         per_page,
