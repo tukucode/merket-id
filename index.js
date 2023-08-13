@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { PORT } from "./src/config/secret.js";
+import allowMethods from "allow-methods"
 
 // IMPORT ROUTER
 import r_users from "./src/routers/r_users.js";
