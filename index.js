@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import { PORT } from "./src/config/secret.js";
-import allowMethods from "allow-methods"
 
 // IMPORT ROUTER
 import r_users from "./src/routers/r_users.js";
@@ -14,7 +13,6 @@ import r_address from "./src/routers/r_address.js";
 const app = express();
 
 app.use(cors({origin: `http://localhost:${PORT}`}));
-app.use(allowMethods(['get', 'post', 'put', 'patch', 'delete']));
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true, limit: "5mb" }));
 
