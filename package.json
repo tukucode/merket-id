@@ -10,6 +10,7 @@
   "author": "Tomi Mandala Putra",
   "license": "ISC",
   "dependencies": {
+    "allow-methods": "^5.0.2",
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.37.1",
     "cors": "^2.8.5",
