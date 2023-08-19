@@ -11,7 +11,6 @@ import r_checkouts from "./src/routers/r_checkouts.js";
 import r_address from "./src/routers/r_address.js";
 
 const app = express();
-// app.use(cors({origin: `http://localhost:${PORT}`}));
 
 const whitelist = [`http://localhost:${PORT}`, 'https://market-id-fe.vercel.app']
 const corsOptionsDelegate = function (req, callback) {
@@ -24,13 +23,8 @@ const corsOptionsDelegate = function (req, callback) {
   callback(null, corsOptions) // callback expects two parameters: error and options
 }
 
-app.options('/*', cors(corsOptionsDelegate), (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-  res.send(200);
-})
 
+app.use(cors(corsOptionsDelegate));
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true, limit: "5mb" }));
 
